@@ -8,7 +8,7 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         return super().handle_one_request()
 
 
-httpd = socketserver.TCPServer(("", 8080), MyHandler)
+httpd = socketserver.TCPServer(("", 80), MyHandler)
 
 while True:
     httpd.handle_request()
