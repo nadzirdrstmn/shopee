@@ -1,14 +1,14 @@
-import http.server
-import socketserver
+import SimpleHTTPServer
+import SocketServer
 
 
-class MyHandler(http.server.SimpleHTTPRequestHandler):
+class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def handle_one_request(self):
         print(self.client_address[0])
-        return super().handle_one_request()
+        return SimpleHTTPServer.SimpleHTTPRequestHandler.handle_one_request(self)
 
-
-httpd = socketserver.TCPServer(("", 80), MyHandler)
+print("Serving local directory")
+httpd = SocketServer.TCPServer(("", 80), MyHandler)
 
 while True:
     httpd.handle_request()
